@@ -19,9 +19,13 @@ class sift_keypoint(torch.nn.modules.Module):
     def forward(self ,  draw_n_matches):
         # Initialise SIFT detector
         sift = cv2.SIFT_create()
+        
         to_gray = self.to_gray
-        train_img_gray = to_gray(self.train)
-        query_img_gray = to_gray(self.query)
+        train_image = self.train
+        query_image = self.query
+        
+        train_img_gray = to_gray(train_image)
+        query_img_gray = to_gray(query_image)
     
         # Generate SIFT keypoints and descriptors
         train_kp, train_desc = sift.detectAndCompute(train_img_gray, None)
