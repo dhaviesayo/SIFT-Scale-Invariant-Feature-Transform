@@ -47,4 +47,4 @@ class sift_keypoint(torch.nn.modules.Module):
             query_img, query_kp,
             matches[:N_MATCHES], query_img.copy(), flags=0)
         
-        return match_img
+        return match_img , train_kp , train_desc , query_kp , query_desc
