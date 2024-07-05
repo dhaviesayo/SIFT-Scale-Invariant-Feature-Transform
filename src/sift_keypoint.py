@@ -16,7 +16,7 @@ class sift_keypoint(torch.nn.modules.Module):
 
     def forward(self ,  draw_n_matches):
         # Initialise SIFT detector
-        sift = cv2.xfeatures2d.SIFT_create()
+        sift = cv2.SIFT_create()
         train_img_gray = to_gray(self.train)
         query_img_gray = to_gray(self.query)
     
