@@ -29,8 +29,8 @@ class sift_keypoint(torch.nn.modules.Module):
         query_img_gray = to_gray(query_image)
     
         # Generate SIFT keypoints and descriptors
-        train_kp, train_desc = sift.detectAndCompute(train_img_gray, None)
-        query_kp, query_desc = sift.detectAndCompute(query_img_gray, None)
+        train_kp, train_desc = sift.detectAndCompute(train_img_gray.numpy(), None)
+        query_kp, query_desc = sift.detectAndCompute(query_img_gray.numpy(), None)
 
         # create a BFMatcher object which will match up the SIFT features
         bf = cv2.BFMatcher(cv2.NORM_L2, crossCheck=True)
