@@ -4,6 +4,11 @@ import matplotlib.pyplot as plt
 import torch
 import torchvision.transforms as transforms
 
+!git clone "https://github.com/rmislam/PythonSIFT" pysift
+import pysift.pysift as pysift
+
+
+
 class sift_keypoint(torch.nn.modules.Module):
     def __init__(self ,  train_img ,  query_img):
         super(sift_keypoint , self).__init__()
@@ -30,8 +35,8 @@ class sift_keypoint(torch.nn.modules.Module):
 
         
         # Generate SIFT keypoints and descriptors
-        train_kp, train_desc = sift.detectAndCompute(np.array(train_img_gray.to(torch.uint8)), None)
-        query_kp, query_desc = sift.detectAndCompute(np.array(query_img_gray.to(torch.uint8)), None)
+        train_kp, train_desc = pysift.computeKeypointsAndDescriptor(np.array(train_img_gray.to(torch.uint8)), None)
+        query_kp, query_desc = pysift.computeKeypointsAndDescriptor(np.array(query_img_gray.to(torch.uint8)), None)
 
         # create a BFMatcher object which will match up the SIFT features
         bf = cv2.BFMatcher(cv2.NORM_L2, crossCheck=True)
