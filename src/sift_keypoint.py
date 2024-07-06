@@ -12,7 +12,7 @@ class sift_keypoint(torch.nn.modules.Module):
         super(sift_keypoint , self).__init__()
         
         def to_gray(color_img):
-            gray = transforms.Grayscale()(color_img)
+            gray = cv2.cvtColor(color_img, cv2.COLOR_RGB2GRAY)
             return gray
 
         self.train= train_img
@@ -28,13 +28,13 @@ class sift_keypoint(torch.nn.modules.Module):
         train_image = self.train
         query_image = self.query
         
-        train_img_gray = transforms.Normalize([0.5,] , [0.5,] )(to_gray(train_image.to(torch.float64)))
-        query_img_gray = transforms.Normalize([0.5,] , [0.5,] )(to_gray(query_image.to(torch.float64)))
+        train_img_gray = to_gray(train_image.to(torch.unit8))
+        query_img_gray = to_gray(query_image.to(torch.unit8))
 
         
         # Generate SIFT keypoints and descriptors
-        train_kp, train_desc = pysift.computeKeypointsAndDescriptors(np.array(train_img_gray.to(torch.uint8)), None)
-        query_kp, query_desc = pysift.computeKeypointsAndDescriptors(np.array(query_img_gray.to(torch.uint8)), None)
+        train_kp, train_desc = pysift.computeKeypointsAndDescriptors(train_img_gray.numpy(), None)
+        query_kp, query_desc = pysift.computeKeypointsAndDescriptors(query_img_gray.numpy(), None)
 
         # create a BFMatcher object which will match up the SIFT features
         bf = cv2.BFMatcher(cv2.NORM_L2, crossCheck=True)
