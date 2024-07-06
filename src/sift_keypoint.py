@@ -33,8 +33,8 @@ class sift_keypoint(torch.nn.modules.Module):
 
         
         # Generate SIFT keypoints and descriptors
-        train_kp, train_desc = pysift.computeKeypointsAndDescriptor(np.array(train_img_gray.to(torch.uint8)), None)
-        query_kp, query_desc = pysift.computeKeypointsAndDescriptor(np.array(query_img_gray.to(torch.uint8)), None)
+        train_kp, train_desc = pysift.computeKeypointsAndDescriptors(np.array(train_img_gray.to(torch.uint8)), None)
+        query_kp, query_desc = pysift.computeKeypointsAndDescriptors(np.array(query_img_gray.to(torch.uint8)), None)
 
         # create a BFMatcher object which will match up the SIFT features
         bf = cv2.BFMatcher(cv2.NORM_L2, crossCheck=True)
