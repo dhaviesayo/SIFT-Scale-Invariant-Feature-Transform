@@ -28,8 +28,8 @@ class sift_keypoint(torch.nn.modules.Module):
         train_image = self.train
         query_image = self.query
         
-        train_img_gray = to_gray(train_image.to(torch.unit8))
-        query_img_gray = to_gray(query_image.to(torch.unit8))
+        train_img_gray = to_gray(train_image.to(torch.uint8))
+        query_img_gray = to_gray(query_image.to(torch.uint8))
 
         
         # Generate SIFT keypoints and descriptors
