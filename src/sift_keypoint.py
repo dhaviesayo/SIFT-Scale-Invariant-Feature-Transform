@@ -48,8 +48,8 @@ class sift_keypoint(torch.nn.modules.Module):
         N_MATCHES = draw_n_matches
 
         match_img = cv2.drawMatches(
-            train_img, train_kp,
-            query_img, query_kp,
+            train_image, train_kp,
+            query_image, query_kp,
             matches[:N_MATCHES], query_img.copy(), flags=0)
         
         return match_img , train_kp , train_desc , query_kp , query_desc
