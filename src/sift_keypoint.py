@@ -3,8 +3,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import torch
 import torchvision.transforms as transforms
-
-!git clone "https://github.com/rmislam/PythonSIFT" pysift
 import pysift.pysift as pysift
 
 
