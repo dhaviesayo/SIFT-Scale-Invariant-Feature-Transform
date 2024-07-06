@@ -15,8 +15,8 @@ class sift_keypoint(torch.nn.modules.Module):
             gray = cv2.cvtColor(color_img, cv2.COLOR_RGB2GRAY)
             return gray
 
-        self.train= train_img
-        self.query= query_img
+        self.train= train_img.permute(1,2,0)
+        self.query= query_img.permute(1,2,0)
         self.to_gray = to_gray
         
 
