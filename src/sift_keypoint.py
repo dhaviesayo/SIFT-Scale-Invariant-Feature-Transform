@@ -25,8 +25,8 @@ class sift_keypoint(torch.nn.modules.Module):
         train_image = self.train
         query_image = self.query
         
-        train_img_gray = transforms.Normalize([0.5,] , [0.5,] )(to_gray(train_image))
-        query_img_gray = transforms.Normalize([0.5,] , [0.5,] )(to_gray(query_image))
+        train_img_gray = transforms.Normalize([0.5,] , [0.5,] )(to_gray(train_image.to(torch.float64)))
+        query_img_gray = transforms.Normalize([0.5,] , [0.5,] )(to_gray(query_image.to(torch.float64)))
 
         
         # Generate SIFT keypoints and descriptors
